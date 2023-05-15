@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const transactionSchema = new Schema({
   amount: Number,
-  description: String,
+  descritpion: String,
   date: { type: Date, default: new Date() },
   createAt: { type: Date, default: Date.now() },
 });

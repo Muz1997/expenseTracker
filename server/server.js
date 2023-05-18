@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 await connect();
 
-app.use(" ", TransactionsApi);
+app.use("/transaction", TransactionsApi);
 
 app.listen(PORT, () => {
   console.log("Server is running at port 4000");

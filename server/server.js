@@ -3,6 +3,9 @@ import connect from "./database/mongodb.js";
 import cors from "cors";
 import bodyParser from "body-parser";
 import TransactionsApi from "./routes/transactionAPI.js";
+import AuthApi from "./routes/AuthApi.js";
+import passport from "passport";
+import passportConfig from "./config/passport.js";
 
 const PORT = 4000;
 const app = express();
@@ -12,6 +15,9 @@ app.use(bodyParser.json());
 await connect();
 
 app.use("/transaction", TransactionsApi);
+app.use("/auth", AuthApi);
+app.use(passport.initialize());
+passportConfig(passport);
 
 app.listen(PORT, () => {
   console.log("Server is running at port 4000");

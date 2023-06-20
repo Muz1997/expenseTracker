@@ -6,10 +6,14 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/auth.js";
 
 export default function ButtonAppBar() {
   const navigate = useNavigate();
-  function logout() {
+  const dispatch = useDispatch();
+  function _logout() {
+    dispatch(logout());
     Cookies.remove("token");
     navigate("/login");
   }
@@ -22,7 +26,7 @@ export default function ButtonAppBar() {
               Expenser
             </Link>
           </Typography>
-          <Button color="inherit" onClick={logout}>
+          <Button color="inherit" onClick={_logout}>
             Logout
           </Button>
           <Button color="inherit">

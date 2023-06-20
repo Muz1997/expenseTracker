@@ -4,9 +4,11 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import TransactionsApi from "./routes/transactionAPI.js";
 import AuthApi from "./routes/AuthApi.js";
+import UserApi from "./routes/UserApi.js";
 import passport from "passport";
 import passportConfig from "./config/passport.js";
-
+import * as dotenv from "dotenv";
+dotenv.config();
 const PORT = 4000;
 const app = express();
 app.use(cors());
@@ -16,6 +18,7 @@ await connect();
 
 app.use("/transaction", TransactionsApi);
 app.use("/auth", AuthApi);
+app.use("/user", UserApi);
 app.use(passport.initialize());
 passportConfig(passport);
 

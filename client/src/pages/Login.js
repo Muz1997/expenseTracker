@@ -11,8 +11,11 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { Link } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { getUser } from "../store/auth.js";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,10 +31,10 @@ export default function Login() {
         "content-type": "application/json",
       },
     });
-    const { token } = await res.json();
+    const { token, user } = await res.json();
     if (res.ok) {
       Cookies.set("token", token);
-      console.log("Success");
+      dispatch(getUser(user));
       navigate("/");
     }
   };
